@@ -17,6 +17,7 @@
     }
 
 body {
+  
   background:
     url("background-pattern.png") repeat,
     linear-gradient(135deg, #550942, #31032f);
@@ -344,7 +345,16 @@ body {
   </div>
 </section>
 
+<audio id="bg-music" src="christmas-song.mp3" autoplay loop muted></audio>
+<script>
+  const music = document.getElementById("bg-music");
+  // хэрэглэгч click хийсэн үед дууг нээх
+  document.addEventListener("click", () => {
+    music.muted = false;
+    music.play();
+  }, {once: true});
   
+</script>
 
 <!-- Font Awesome CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -451,7 +461,7 @@ body {
       }, 100);
     });
   });
-  
+
 </script>
 
 <script>
