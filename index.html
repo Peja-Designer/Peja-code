@@ -70,8 +70,8 @@ body {
       box-shadow:0 10px 30px rgba(0,0,0,0.08);
     }
     section h2 {
-      font-size:40px;
-      font-weight:800;
+      font-size:32px;
+      font-weight:50;
       margin-bottom:30px;
       opacity:0;
       animation:fadeUp 1s ease forwards;
@@ -196,22 +196,29 @@ body {
   </style>
 </head>
 
-<body>
-  <header>
-    <h1>PEJA</h1>
-    <p>Graphic Designer · Branding · Visual Artist</p>
+<header id="hero">
+  <div class="hero-overlay"></div>
 
-    <nav>
-      <a href="#about">Танилцуулга</a>
-      <a href="#skills">Чадвар</a>
-      <a href="#work">Ажлууд</a>
-      <a href="#contact">Холбоо</a>
+  <!-- Лого -->
+  <div class="hero-logo">
+    <img src="peja-logo.png" alt="PEJA Logo">
+  </div>
+
+  <div class="hero-content">
+    <h1>Graphic Designer · Branding · Visual Artist</h1>
+    <nav class="hero-nav">
+      <a href="#about">ТАНИЛЦУУЛГА</a>
+      <a href="#skills">УР ЧАДВАР</a>
+      <a href="#works">ХИЙСЭН АЖЛУУД</a>
+      <a href="#contact">ХОЛБОО БАРИХ</a>
     </nav>
-  </header>
+  </div>
+</header>
+
 
   <!-- About секци: Танилцуулга -->
 <section id="about">
-  <h2>Танилцуулга</h2>
+  <h2>ТАНИЛЦУУЛГА</h2>
 
   <!-- About Box: текст ба зураг хоёр багцалсан -->
   <div class="about-box">
@@ -270,12 +277,87 @@ body {
     0% { opacity:0; transform:translateY(30px) scale(0.8);}
     100% { opacity:1; transform:translateY(0) scale(1);}
   }
+  /* Толгой бүхий хэсэг */
+/* Лого toxirgoo
+*/
+.hero-logo {
+  position: absolute;
+  top: 20px;
+  left: 30px;       /* зүүн талд байрлуулах */
+  z-index: 3;
+}
+
+.hero-logo img {
+  height: 50px;      /* хүссэн хэмжээ */
+  width: auto;
+}
+
+/* Header (full screen) */
+#hero {
+  position: relative;
+  width: 100vw;         /* дэлгэцийн өргөн */
+  height: 100vh;        /* дэлгэцийн өндөр */
+  background: url('header-bg.jpg') center/cover no-repeat;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ffffff;
+  text-align: center;
+  overflow: hidden;
+}
+
+/* Overlay */
+#hero .hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: #31032f;
+  z-index: 1;
+}
+
+/* Content */
+#hero .hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+#hero h1 {
+  font-family: 'Roboto', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  line-height: 1.3;
+  margin-bottom: 30px;
+}
+
+.hero-nav {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  flex-wrap: wrap;
+}
+
+.hero-nav a {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 500;
+  color: #ff6ea1;
+  text-decoration: none;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.hero-nav a:hover {
+  background: rgba(255, 110, 161, 0.15);
+  color: #ffffff;
+}
+
+
+
 </style>
 
 
   <!-- Skills -->
   <section id="skills">
-    <h2>Программын чадвар</h2>
+    <h2>ХУВИЙН ЧАДВАР</h2>
     <div class="skills-grid">
       <div class="skill-card">
         Illustrator
@@ -326,11 +408,11 @@ body {
       </div>
     </div>
   </section>
-  <!-- Work секци -->
-<section id="work">
   
-  <h2>Ажлууд</h2>
-  <div class="gallery">
+  <!-- Work секци -->
+<section id="works">
+  <h2>ХИЙСЭН АЖЛУУД</h2>
+   <div class="gallery">
     <img src="arxi 1.png" alt="Work 1" sty>
     <img src="poster2.png" alt="Work 2">
     <img src="poster3.png" alt="Work 4">
@@ -362,7 +444,7 @@ body {
 
 <!-- Contact секци -->
 <section id="contact">
-  <h2>Холбоо барих</h2>
+  <h2>ХОЛБОО БАРИХ</h2>
 
   <p>
     <a href="https://instagram.com/gdesigner_peja" target="_blank" class="contact-link">
@@ -374,7 +456,7 @@ body {
   <p>
     <a href="https://www.facebook.com/ArkhangaiGdesign/" target="_blank" class="contact-link">
       <i class="fab fa-facebook" style="color:#1877F2; margin-right:10px;"></i>
-      PEJA Nation
+      Peja Nation
     </a>
   </p>
 
