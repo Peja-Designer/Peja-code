@@ -208,6 +208,7 @@ body {
     <h1>Graphic Designer · Branding · Visual Artist</h1>
     <nav class="hero-nav">
       <a href="#about">ТАНИЛЦУУЛГА</a>
+      <a href="#services">ҮЙЛЧИЛГЭЭ</a>
       <a href="#skills">УР ЧАДВАР</a>
       <a href="#works">ХИЙСЭН АЖЛУУД</a>
       <a href="#contact">ХОЛБОО БАРИХ</a>
@@ -346,13 +347,101 @@ body {
 }
 
 .hero-nav a:hover {
-  background: rgba(255, 110, 161, 0.15);
+  background: rgba(255, 110, 161, 3);
   color: #ffffff;
+}
+#hero .hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(23, 23, 23, 0.25); /* бага хар overlay → арын хээ харагдана */
+  z-index: 1;
+}
+/* Services section */
+#services {
+  max-width: 1200px;
+  margin: 100px auto;
+  padding: 60px 40px;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  width: 60px;
+  height: 4px;
+  background: #ff6ea1;
+  display: block;
+  margin-top: 12px;
+  border-radius: 2px;
+}
+
+/* Grid layout */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+/* Card */
+.service-card {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: 18px;
+  padding: 30px;
+  transition: all 0.4s ease;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.service-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  font-size: 14px;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+/* Hover эффект */
+.service-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 110, 161, 0.12);
 }
 
 
 
 </style>
+ <section id="accordion">
+  <h2 class="section-title">Үйлчилгээ</h2>
+
+  <div class="acc-item">
+    <button class="acc-header">Лого · Брэнд бүүк</button>
+    <div class="acc-body">
+      <p>Брэндийн өнгө, фонт, логог нэг стандарт болгон боловсруулна.</p>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-header">Хэвлэлийн эх бэлтгэл</button>
+    <div class="acc-body">
+      <p>Постер, баннер, хэвлэлийн файл стандартын дагуу бэлтгэнэ.</p>
+    </div>
+  </div>
+
+  <div class="acc-item">
+    <button class="acc-header">Видео шторк</button>
+    <div class="acc-body">
+      <p>Social media-д зориулсан богино видео, хөдөлгөөнт дизайн.</p>
+    </div>
+  </div>
+
+</section>
 
 
   <!-- Skills -->
@@ -409,6 +498,9 @@ body {
     </div>
   </section>
   
+  
+
+
   <!-- Work секци -->
 <section id="works">
   <h2>ХИЙСЭН АЖЛУУД</h2>
@@ -545,6 +637,51 @@ body {
   transform: translateY(-6px);  /* mouse hover хийхэд жижигхэн наашилна */
 }
 
+#accordion {
+  max-width: 900px;
+  margin: 80px auto;
+}
+
+.acc-item {
+  margin-bottom: 16px;
+  border-radius: 14px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.06);
+}
+
+.acc-header {
+  width: 100%;
+  padding: 18px 24px;
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 20px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  backdrop-filter: blur(6px);
+}
+
+.acc-header:hover {
+  background: rgba(255,255,255,0.08);
+}
+
+.acc-body {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 24px;
+}
+
+.acc-body p {
+  padding: 16px 0 22px;
+  opacity: 0.9;
+  line-height: 1.6;
+}
+
+.acc-item.active .acc-body {
+  max-height: 200px;
+}
 
 </style>
 
@@ -613,6 +750,20 @@ body {
   lb.addEventListener("click", () => {
     lb.style.display = "none";
   });
+  <script>
+  document.querySelectorAll('.acc-header').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const item = btn.parentElement;
+
+      document.querySelectorAll('.acc-item').forEach(i => {
+        if (i !== item) i.classList.remove('active');
+      });
+
+      item.classList.toggle('active');
+    });
+  });
+</script>
+
 </script>
 
 

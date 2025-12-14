@@ -65,7 +65,7 @@ body {
       max-width:1200px;
       margin:60px auto;
       padding:50px;
-      background:rgb(46, 5, 56);
+      background:rgb(46, 5, 56, 0.6);
       border-radius:var(--radius);
       box-shadow:0 10px 30px rgba(0,0,0,0.08);
     }
@@ -208,6 +208,7 @@ body {
     <h1>Graphic Designer · Branding · Visual Artist</h1>
     <nav class="hero-nav">
       <a href="#about">ТАНИЛЦУУЛГА</a>
+      <a href="#services">ҮЙЛЧИЛГЭЭ</a>
       <a href="#skills">УР ЧАДВАР</a>
       <a href="#works">ХИЙСЭН АЖЛУУД</a>
       <a href="#contact">ХОЛБОО БАРИХ</a>
@@ -346,15 +347,124 @@ body {
 }
 
 .hero-nav a:hover {
-  background: rgba(255, 110, 161, 0.15);
+  background: rgba(255, 110, 161, 3);
   color: #ffffff;
+}
+#hero .hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(23, 23, 23, 0.25); /* бага хар overlay → арын хээ харагдана */
+  z-index: 1;
+}
+/* Services section */
+#services {
+  max-width: 1200px;
+  margin: 100px auto;
+  padding: 60px 40px;
+}
+
+.section-title {
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 40px;
+  position: relative;
+}
+
+.section-title::after {
+  content: "";
+  width: 60px;
+  height: 4px;
+  background: #ff6ea1;
+  display: block;
+  margin-top: 12px;
+  border-radius: 2px;
+}
+
+/* Grid layout */
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 30px;
+}
+
+/* Card */
+.service-card {
+  background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(0,0,0,0.2));
+  border-radius: 18px;
+  padding: 30px;
+  transition: all 0.4s ease;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+}
+
+.service-card h3 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+.service-card p {
+  font-size: 14px;
+  opacity: 0.85;
+  line-height: 1.6;
+}
+
+/* Hover эффект */
+.service-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255, 110, 161, 0.12);
 }
 
 
 
 </style>
+  <!--зАХИАЛГА-->
 
+  <section id="services">
+          <h2 class="section-title">ТАНД ДАРААХ ҮЙЛЧИЛГЭЭГ ҮЗҮҮЛЖ БАЙНА</h2>
+            <div class="services-grid">
+              <div class="service-card">
+    <h3>ЛОГО, БРЕНДБҮҮК</h3>
+    <p class="service-desc" data-color="#ff7e5f">
+      ТАНАЙ БРЕНДИЙН ЛОГО ӨНГӨ ТӨРХИЙГ ТОДОРХОЙЛНО
+    </p>
+  </div>
 
+  <div class="service-card">
+    <h3>ПОСТЕР ДИЗАЙН ЭХ БЭЛТГЭЛ</h3>
+    <p class="service-desc" data-color="#feb47b">
+      ПОСТЕР, БАННЕР, АРГА ХЭМЖЭЭНИЙ ДИЗАЙН
+    </p>
+  </div>
+
+  <div class="service-card">
+    <h3>ТАНИЛЦУУЛГА</h3>
+    <p class="service-desc" data-color="#6a5acd">
+      КОМПАНИ БОЛОН БҮТЭЭГДЭХҮҮНИЙ ТАНИЛЦУУЛГА
+    </p>
+  </div>
+
+  <div class="service-card">
+    <h3>ХУУЧИН ЗУРАГ СЭРГЭЭХ</h3>
+    <p class="service-desc" data-color="#00bfff">
+      ФОТО ЗАСВАР БОЛОН ДҮРСЛЭЛ СЭРГЭЭХ
+    </p>
+  </div>
+
+  <div class="service-card">
+    <h3>ВИДЕО ШТОРК</h3>
+    <p class="service-desc" data-color="#ff1493">
+      РИЙЛ БИЧЛЭГ, ШОРТ ВИДЕО
+    </p>
+  </div>
+
+  <div class="service-card">
+    <h3>AI ЗУРАГ ЭВЛҮҮЛЭГ</h3>
+    <p class="service-desc" data-color="#32cd32">
+      AI АШИГЛАН БҮХ ТӨРЛИЙН ЗУРАГ ЗАСВАР
+    </p>
+  </div>
+</div>
+</section>
   <!-- Skills -->
   <section id="skills">
     <h2>ХУВИЙН ЧАДВАР</h2>
@@ -409,6 +519,9 @@ body {
     </div>
   </section>
   
+  
+
+
   <!-- Work секци -->
 <section id="works">
   <h2>ХИЙСЭН АЖЛУУД</h2>
@@ -613,6 +726,12 @@ body {
   lb.addEventListener("click", () => {
     lb.style.display = "none";
   });
+  // JS: service-desc-т data-color-аас өнгө тохируулах
+document.querySelectorAll('.service-desc').forEach(desc => {
+  const color = desc.getAttribute('data-color');
+  if(color) desc.style.color = color;
+});
+
 </script>
 
 
