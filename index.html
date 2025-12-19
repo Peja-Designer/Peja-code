@@ -408,6 +408,56 @@ body {
   background: rgba(255, 110, 161, 0.12);
 }
 
+/* Үнийн санал товч */
+.price-btn {
+  position: fixed;
+  right: 20px;
+  bottom: 40px;
+  padding: 14px 20px;
+  background: #ff6ea1;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-weight: 600;
+  cursor: pointer;
+  z-index: 9998;
+}
+
+/* Side panel */
+.price-panel {
+  position: fixed;
+  top: 0;
+  right: -360px; /* эхэндээ нуусан */
+  width: 320px;
+  height: 100vh;
+  background: rgba(46, 5, 56, 0.95);
+  backdrop-filter: blur(12px);
+  padding: 30px;
+  transition: right 0.4s ease;
+  z-index: 9999;
+  box-shadow: -10px 0 30px rgba(0,0,0,0.4);
+}
+
+.price-panel.active {
+  right: 0;
+}
+
+.price-panel h3 {
+  font-size: 22px;
+  margin-bottom: 20px;
+  font-weight: 700;
+}
+
+.price-panel ul {
+  list-style: none;
+  padding: 0;
+}
+
+.price-panel li {
+  margin-bottom: 14px;
+  font-size: 16px;
+  opacity: 0.9;
+}
 
 
 </style>
@@ -513,7 +563,21 @@ body {
     </div>
   </section>
   
-  
+  <!-- Үнийн санал товч -->
+<button id="priceBtn" class="price-btn">ҮНИЙН САНАЛ</button>
+
+<!-- Side panel -->
+<div id="pricePanel" class="price-panel">
+  <h3>ҮНИЙН САНАЛ</h3>
+  <ul>
+    <li>Лого дизайн — 600,000₮</li>
+    <li>Брэндбүүк — 1,200,000₮</li>
+    <li>Постер дизайн — 80,000₮</li>
+    <li>Social багц — 300,000₮</li>
+    <li>Видео шторк — 150,000₮</li>
+  </ul>
+</div>
+
 
 
   <!-- Work секци -->
@@ -533,18 +597,18 @@ body {
   <div id="lightbox">
     <img id="lightbox-img">
   </div>
-</section>
-
 <audio id="bg-music" src="christmas-song.mp3" autoplay loop muted></audio>
+
 <script>
   const music = document.getElementById("bg-music");
-  // хэрэглэгч click хийсэн үед дууг нээх
+  music.volume = 0.2; // 🔈 30% дуу
+
   document.addEventListener("click", () => {
     music.muted = false;
     music.play();
-  }, {once: true});
-  
+  }, { once: true });
 </script>
+
 
 <!-- Font Awesome CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -726,6 +790,23 @@ document.querySelectorAll('.service-desc').forEach(desc => {
   if(color) desc.style.color = color;
 });
 
+</script>
+<script>
+  const priceBtn = document.getElementById("priceBtn");
+  const pricePanel = document.getElementById("pricePanel");
+
+  // Нээх
+  priceBtn.addEventListener("click", (e) => {
+    e.stopPropagation();
+    pricePanel.classList.add("active");
+  });
+
+  // Гадна дарвал хаах
+  document.addEventListener("click", (e) => {
+    if (!pricePanel.contains(e.target) && !priceBtn.contains(e.target)) {
+      pricePanel.classList.remove("active");
+    }
+  });
 </script>
 
 
