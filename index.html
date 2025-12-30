@@ -13,7 +13,7 @@
       --accent:#2c0522;
       --bg:#4d0936;
       --text:#ffffff;
-      --radius:20px;
+      --radius:12px;
     }
 
 body {
@@ -110,7 +110,7 @@ body {
     .skill-card {
       position: relative;
       background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(0,0,0,0.2));
-      border-radius: var(--radius);
+      border-radius: 12px;
       padding: 25px;
       box-shadow: 0 8px 20px rgba(0,0,0,0.3);
       font-size: 18px;
@@ -339,7 +339,7 @@ body {
 .hero-nav a {
   font-family: 'Roboto', sans-serif;
   font-weight: 500;
-  color: #ff6ea1;
+  color:rgb(255, 20, 147);
   text-decoration: none;
   padding: 8px 12px;
   border-radius: 8px;
@@ -384,9 +384,9 @@ body {
 /* Card */
 .service-card {
   background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(0,0,0,0.2));
-  border-radius: 18px;
-  padding: 30px;
-  transition: all 0.4s ease;
+  border-radius: 12px;
+  padding: 12px;
+
   box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 }
 
@@ -404,8 +404,9 @@ body {
 
 /* Hover эффект */
 .service-card:hover {
-  transform: translateY(-8px);
-  background: rgba(255, 110, 161, 0.12);
+    transform: scale(1.1);
+      transition: transform 0.6s ease;
+ 
 }
 
 /* Үнийн санал товч */
@@ -457,6 +458,49 @@ body {
   margin-bottom: 14px;
   font-size: 16px;
   opacity: 0.9;
+}
+.price-list {
+  list-style: none;
+  padding: 0;
+}
+
+.price-item {
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 14px;
+  margin-bottom: 14px;
+  overflow: hidden;
+  background: rgba(255,255,255,0.03);
+}
+
+.price-title {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 16px 18px;
+  color: #ffffff;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.price-title:hover {
+  background: rgb(255, 20, 147);
+}
+
+.price-desc {
+  max-height: 0;
+  overflow: hidden;
+  padding: 0 18px;
+  font-size: 14px;
+  opacity: 0.85;
+  line-height: 1.6;
+  transition: all 0.35s ease;
+}
+
+.price-item.active .price-desc {
+  max-height: 120px;
+  padding: 12px 18px 16px;
 }
 
 
@@ -568,15 +612,67 @@ body {
 
 <!-- Side panel -->
 <div id="pricePanel" class="price-panel">
-  <h3>ҮНИЙН САНАЛ</h3>
-  <ul>
-    <li>Лого дизайн — 600,000₮</li>
-    <li>Брэндбүүк — 1,200,000₮</li>
-    <li>Постер дизайн — 80,000₮</li>
-    <li>Social багц — 300,000₮</li>
-    <li>Видео шторк — 150,000₮</li>
-  </ul>
+<ul class="price-list">
+
+  <li class="price-item">
+    <div class="price-title">Брэндбүүк — 1,300,000₮</div>
+    <div class="price-desc">
+      • Лого стандарт<br>
+      • Фонт & өнгө дизайн<br>
+      • Брэнд гарын авлага<br>
+      • Брэнд Бэлгэдэл<br>
+      • Дэвтэр бал, Туг далбай<br>
+      • Ажлын үнэмлэх, Нэрийн хуудас<br>
+      • 16 нүүр Брэнд бүүк<br>
+    </div>
+  </li>
+
+  <li class="price-item">
+    <div class="price-title">Сошиал маркетинг багц 1.200.000₮ </div>
+    <div class="price-desc">
+      • Админ хийнэ, пост нийтлэл<br>
+      • Сард 15 Постер<br>
+      • 3 рийл видео<br>
+    </div>
+  </li>
+
+  <li class="price-item">
+    <div class="price-title">Лого дизайн — 600,000₮</div>
+    <div class="price-desc">
+      • Лого<br>
+      • Брэнд өнгө<br>
+      • Social ковер дизайнууд<br>
+      • +1 Постер<br>
+    </div>
+  </li>
+
+ <li class="price-item">
+    <div class="price-title"> Ai Фото, видео — 500,000₮</div>
+    <div class="price-desc">
+      • Хуучны зураг засварлах<br>
+      • Хөдөлгөөнт дүрсэлд оруулах<br>
+    </div>
+  </li>
+
+  <li class="price-item">
+    <div class="price-title">Постер дизайн — 80,000₮</div>
+    <div class="price-desc">
+      • Постер эх бэлтгэл<br>
+      • Хэвлэлийн эх бэлтгэл<br>
+    </div>
+  </li>
+
+
 </div>
+
+<script>
+  document.querySelectorAll(".price-title").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const item = btn.parentElement;
+      item.classList.toggle("active");
+    });
+  });
+</script>
 
 
 
@@ -797,6 +893,7 @@ document.querySelectorAll('.service-desc').forEach(desc => {
 });
 
 </script>
+
 <script>
   const priceBtn = document.getElementById("priceBtn");
   const pricePanel = document.getElementById("pricePanel");
@@ -813,6 +910,7 @@ document.querySelectorAll('.service-desc').forEach(desc => {
       pricePanel.classList.remove("active");
     }
   });
+  
 </script>
 
 
