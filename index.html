@@ -706,6 +706,18 @@ body {
   }, { once: true });
 </script>
 
+<link rel="manifest" href="/manifest.json">
+<meta name="theme-color" content="#ff6ea1">
+
+
+<script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("service-worker.js");
+  }
+</script>
+
+</script>
+
 
 <!-- Font Awesome CDN -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
@@ -910,7 +922,11 @@ document.querySelectorAll('.service-desc').forEach(desc => {
       pricePanel.classList.remove("active");
     }
   });
-  
+  <script>
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker.register("/sw.js");
+  }
+
 </script>
 
 
