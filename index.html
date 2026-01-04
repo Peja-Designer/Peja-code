@@ -2,7 +2,7 @@
 <html lang="mn">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PEJA Portfolio — Modern UI</title>
 
 
@@ -234,7 +234,7 @@ body {
 
   <!-- Лого -->
   <div class="hero-logo">
-    <img src="peja-logo.png" alt="PEJA Logo">
+    <img src="peja-logo.png" alt="PEJA Logo" class="floating-logo">
   </div>
 
   <div class="hero-content">
@@ -330,8 +330,8 @@ body {
 /* Header (full screen) */
 #hero {
   position: relative;
-  width: 100vw;         /* дэлгэцийн өргөн */
-  height: 100vh;        /* дэлгэцийн өндөр */
+  width: 100;         /* дэлгэцийн өргөн */
+  height: 100;        /* дэлгэцийн өндөр */
   background: url('header-bg.jpg') center/cover no-repeat;
   display: flex;
   justify-content: center;
@@ -389,6 +389,20 @@ body {
   inset: 0;
   background: rgba(23, 23, 23, 0.25); /* бага хар overlay → арын хээ харагдана */
   z-index: 1;
+}
+/* Floating logo animation */
+.floating-logo {
+  width: 50px;             /* Лого хэмжээ */
+  height: auto;
+  animation: floatLogo 3s ease-in-out infinite;
+}
+
+@keyframes floatLogo {
+  0%   { transform: translateY(0) scale(1); }
+  25%  { transform: translateY(-5px) scale(1.02); }
+  50%  { transform: translateY(0) scale(1); }
+  75%  { transform: translateY(5px) scale(1.02); }
+  100% { transform: translateY(0) scale(1); }
 }
 @media (max-width: 768px) {
   .about-img img {
@@ -509,13 +523,6 @@ body {
   padding: 0;
 }
 
-.price-item {
-  border: 1px solid rgba(255,255,255,0.15);
-  border-radius: 14px;
-  margin-bottom: 14px;
-  overflow: hidden;
-  background: rgba(255,255,255,0.03);
-}
 
 .price-title {
   width: 100%;
@@ -544,7 +551,7 @@ body {
 }
 
 .price-item.active .price-desc {
-  max-height: 120px;
+  max-height: 10px;
   padding: 12px 18px 16px;
 }
 .video-section {
@@ -673,8 +680,7 @@ body {
     </div>
   </section>
   
-  <!-- Үнийн санал товч -->
-<button id="priceBtn" class="price-btn">ҮНИЙН САНАЛ</button>
+
 
 <!-- Side panel -->
 <div id="pricePanel" class="price-panel">
@@ -813,6 +819,11 @@ body {
     navigator.serviceWorker.register("service-worker.js");
   }
 </script>
+<!-- Right Side Quick Menu -->
+<div class="side-actions">
+  <button id="sideMenuBtn" class="side-btn">Menu</button>
+  <button id="sidePriceBtn" class="side-btn accent">Үнийн санал</button>
+</div>
 
 </script>
 
@@ -899,8 +910,8 @@ body {
 }
 
 #lightbox img {
-  max-width: 90%;
-  max-height: 90%;
+ max-width: 90vw;
+  max-height: 90vh;
   border-radius: 12px;
   box-shadow: 0 20px 60px rgba(0,0,0,0.6);
   transform: scale(0.9);
@@ -954,6 +965,44 @@ body {
 #services {
   margin: 30px auto;      /* гадна зай (дээш доош) */
   padding: 40px 40px;     /* дотор зай (арын дэвсгэрийн өндөр) */
+}
+/* Right side buttons */
+.side-actions {
+  position: fixed;
+  right: -120px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  z-index: 9999;
+  animation: slideInSide 1s ease forwards;
+}
+
+.side-btn {
+  padding: 14px 18px;
+  border-radius: 30px 20 0 30px;
+  border: none;
+  background: rgba(0, 0, 0, 0.12);
+  color: #fff;
+  font-weight: 600;
+  cursor: pointer;
+  backdrop-filter: blur(10px);
+  transition: all 0.3s ease;
+}
+
+.side-btn:hover {
+  padding-right: 30px;
+  background: rgba(0, 0, 0, 0.12);
+}
+
+.side-btn.accent {
+  background: rgba(0, 0, 0, 0.12);
+}
+
+@keyframes slideInSide {
+  from { right: -120px; opacity: 0; }
+  to   { right: 0; opacity: 1; }
 }
 
 
@@ -1033,14 +1082,8 @@ document.querySelectorAll('.service-desc').forEach(desc => {
 </script>
 
 <script>
-  const priceBtn = document.getElementById("priceBtn");
-  const pricePanel = document.getElementById("pricePanel");
 
   // Нээх
-  priceBtn.addEventListener("click", (e) => {
-    e.stopPropagation();
-    pricePanel.classList.add("active");
-  });
 
   // Гадна дарвал хаах
   document.addEventListener("click", (e) => {
@@ -1077,9 +1120,22 @@ videos.forEach(video => {
   });
 });
 </script>
+<script>
+  // Menu → нүүр хуудас руу буцах
+  document.getElementById("sideMenuBtn").addEventListener("click", () => {
+    document.getElementById("hero").scrollIntoView({
+      behavior: "smooth"
+    });
+  });
 
+const sidePriceBtn = document.getElementById("sidePriceBtn");
+const pricePanel = document.getElementById("pricePanel");
+
+sidePriceBtn.addEventListener("click", (e) => {
+  e.stopPropagation();
+  pricePanel.classList.toggle("active");
+});
 
 </script>
-
 
 
