@@ -160,6 +160,15 @@ body {
       transform: scale(1.2);
       transition: transform 0.6s ease;
     }
+#skills,
+.skills,
+.skills-content {
+  display: block !important;
+  max-height: none !important;
+  opacity: 1 !important;
+  transform: none !important;
+  overflow: visible !important;
+}
 
 
 @keyframes zoomIn {
@@ -209,7 +218,7 @@ body {
   object-fit:cover;
   border-radius:12px;
  cursor: pointer;
-  transition:0.3s;
+  transition:0.3ease;
 }
 
 
@@ -810,12 +819,22 @@ document.querySelectorAll(".price-title").forEach(btn => {
   </div>
 
 <div class="gallery" id="video">
-  <video muted loop playsinline>
+  <video  
+  controls
+    autoplay
+    muted
+    loop
+    playsinline>
     <source src="video1.mp4" type="video/mp4">
   </video>
 
-  <video muted loop playsinline>
+  <video  controls
+    autoplay
+    muted
+    loop
+    playsinline>
     <source src="videohoyr.mp4" type="video/mp4">
+    
   </video>
 </div>
 
@@ -825,9 +844,11 @@ document.querySelectorAll(".price-title").forEach(btn => {
     <img src="ai1.png">
   </div>
 </section>
+<audio id="bg-music" src="christmas-song.mp3" autoplay loop muted></audio>
+
 <script>
   const music = document.getElementById("bg-music");
-  music.volume = 0.2; // 🔈 30% дуу
+  music.volume = 0.2; // 🔈 20%
 
   document.addEventListener("click", () => {
     music.muted = false;
@@ -1086,6 +1107,10 @@ document.querySelectorAll(".price-title").forEach(btn => {
       }, 100);
     });
   });
+document.addEventListener("DOMContentLoaded", () => {
+  const skills = document.getElementById("skills");
+  if (skills) skills.classList.add("active");
+});
 
 </script>
 
@@ -1137,19 +1162,38 @@ tabs.forEach(tab => {
   });
 });
 
-const videos = document.querySelectorAll('#video video');
+  const videos = document.querySelectorAll('.gallery video');
 
-videos.forEach(video => {
-  video.addEventListener('mouseenter', () => {
-    videos.forEach(v => v.pause());  // Бусад видеонуудыг зогсооно
-    video.play();
-  });
+  videos.forEach(video => {
 
-  video.addEventListener('mouseleave', () => {
-    video.pause();
+    // Desktop → hover
+    video.addEventListener('mouseenter', () => {
+      videos.forEach(v => {
+        if (v !== video) v.pause();
+      });
+      video.play();
+    });
+
+    video.addEventListener('mouseleave', () => {
+      video.pause();
+    });
+
+    // Mobile → tap
+    video.addEventListener('click', () => {
+      videos.forEach(v => {
+        if (v !== video) v.pause();
+      });
+
+      if (video.paused) {
+        video.play();
+      } else {
+        video.pause();
+      }
+    });
+
   });
-});
 </script>
+
 <script>
 // Menu → нүүр хуудас руу буцах
 document.getElementById("sideMenuBtn").addEventListener("click", () => {
