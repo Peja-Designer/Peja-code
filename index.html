@@ -170,11 +170,13 @@ body {
   display:flex;
   gap:20px;
   margin-bottom:30px;
+   margin-top: -10px;
+
 }
 
 .tab {
-  padding:10px 25px;
-  border-radius:30px;
+  padding:5px 15px;
+  border-radius:6px;
   background:#2c0522;
   color:#fff;
   border:none;
@@ -210,9 +212,11 @@ body {
   transition:0.3s;
 }
 
+
 .gallery img:hover,
 .gallery video:hover {
   transform:scale(1.05);
+  
 }
 
     #contact p { font-size:22px; margin:8px 0; opacity:0; animation:fadeUp 1s ease forwards; }
@@ -418,6 +422,7 @@ body {
     max-width: none;
     padding: 20px;
     overflow-y: auto;
+     overflow-x: hidden;
     aspect-ratio: 4 / 5;
   }
   }
@@ -782,7 +787,8 @@ document.querySelectorAll(".price-title").forEach(btn => {
     <button class="tab active" data-tab="logo">Лого</button>
     <button class="tab" data-tab="poster">Постер</button>
     <button class="tab" data-tab="video">Видео</button>
-    <button class="tab" data-tab="ai">AI Фото</button>
+    <button class="tab" data-tab="ai">Ai фото</button>
+
   </div>
 
   <div class="gallery active" id="logo">
@@ -804,11 +810,11 @@ document.querySelectorAll(".price-title").forEach(btn => {
   </div>
 
 <div class="gallery" id="video">
-  <video controls autoplay muted loop playsinline>
+  <video muted loop playsinline>
     <source src="video1.mp4" type="video/mp4">
   </video>
 
-  <video controls autoplay muted loop playsinline>
+  <video muted loop playsinline>
     <source src="videohoyr.mp4" type="video/mp4">
   </video>
 </div>
@@ -1018,7 +1024,12 @@ document.querySelectorAll(".price-title").forEach(btn => {
 .side-btn.accent {
   background: rgba(0, 0, 0, 0.12);
 }
-
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
 @keyframes slideInSide {
   from { right: -120px; opacity: 0; }
   to   { right: 0; opacity: 1; }
