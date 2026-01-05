@@ -2,10 +2,11 @@
 <html lang="mn">
 <head>
   <meta charset="UTF-8" />
+  <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
   <title>PEJA Portfolio — Modern UI</title>
-
-
   <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     :root {
@@ -329,16 +330,18 @@ body {
 
 /* Header (full screen) */
 #hero {
-  position: relative;
-  width: 100;         /* дэлгэцийн өргөн */
-  height: 100;        /* дэлгэцийн өндөр */
-  background: url('header-bg.jpg') center/cover no-repeat;
+   position: relative;
+  width: 100%;          /* дэлгэцийн өргөн */
+  height: 100vh;        /* дэлгэцийн өндөр */
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column; /* доторх элементүүдийг багцлах */
+  justify-content: center; /* босоо голд */
+  align-items: center;     /* хэвтээ голд */
   color: #ffffff;
   text-align: center;
   overflow: hidden;
+
+
 }
 
 /* Overlay */
@@ -353,6 +356,7 @@ body {
 #hero .hero-content {
   position: relative;
   z-index: 2;
+  max-width: 1000px;
 }
 
 #hero h1 {
@@ -404,13 +408,16 @@ body {
   75%  { transform: translateY(5px) scale(1.02); }
   100% { transform: translateY(0) scale(1); }
 }
-@media (max-width: 768px) {
+@media (max-width: 600px) {
   .about-img img {
     left: 0 !important;
     top: 0 !important;
     margin: 0 auto;
     display: block;
     height: auto;
+    max-width: none;
+    padding: 20px;
+    overflow-y: auto;
     aspect-ratio: 4 / 5;
   }
   }
@@ -445,8 +452,8 @@ body {
   background: linear-gradient(145deg, rgba(255,255,255,0.05), rgba(0,0,0,0.2));
   border-radius: 12px;
   padding: 12px;
-
   box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+  
 }
 
 .service-card h3 {
@@ -456,17 +463,17 @@ body {
 }
 
 .service-card p {
-  font-size: 14px;
-  opacity: 0.85;
-  line-height: 1.6;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  will-change: transform;
+  
 }
 
 /* Hover эффект */
 .service-card:hover {
-    transform: scale(1.122);
-      transition: transform 0.s ease;
+      transform: scale(1.120);
+      transition: transform 0.6s ease;
+    }
  
-}
 
 /* Үнийн санал товч */
 .price-btn {
@@ -477,7 +484,7 @@ body {
   background: #ff6ea1;
   color: #fff;
   border: none;
-  border-radius: 30px;
+  border-radius: 0px;
   font-weight: 600;
   cursor: pointer;
   z-index: 9998;
@@ -487,16 +494,19 @@ body {
 .price-panel {
   position: fixed;
   top: 0;
-  right: -360px; /* эхэндээ нуусан */
+  right: -360px;
   width: 320px;
   height: 100vh;
-  background: rgba(46, 5, 56, 0.95);
-  backdrop-filter: blur(12px);
+  background: rgba(46, 5, 56, 0.55); /* тунгалаг фон */
+  backdrop-filter: blur(16px);        /* шилэн мэтぼぼぼぼぼ */
   padding: 30px;
   transition: right 0.4s ease;
   z-index: 9999;
   box-shadow: -10px 0 30px rgba(0,0,0,0.4);
+  border-left: 1px solid rgba(255,255,255,0.2); /* тунгалаг хүрээ */
+  
 }
+
 
 .price-panel.active {
   right: 0;
@@ -525,19 +535,22 @@ body {
 
 
 .price-title {
-  width: 100%;
-  background: none;
-  border: none;
-  padding: 16px 18px;
+ width: 100%;
+  background: rgba(255, 20, 147, 0.08); /* тунгалаг цайвар фон */
+  border: 1px solid rgba(255, 20, 147, 0.08);
+  padding: 14px 16px;
   color: #ffffff;
-  font-size: 16px;
+  font-size: 14px;
   font-weight: 600;
   text-align: left;
   cursor: pointer;
+  border-radius: 10px;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(6px); /* товч өөрөө тунгалаг */
 }
-
 .price-title:hover {
-  background: rgb(255, 20, 147);
+  background: rgba(255, 20, 147, 0.4);
+  box-shadow: 0 4px 12px rgba(255, 20, 147, 0.3);
 }
 
 .price-desc {
@@ -551,8 +564,11 @@ body {
 }
 
 .price-item.active .price-desc {
-  max-height: 10px;
+  max-height: 500px; /* текст бүрэн харагдана */
   padding: 12px 18px 16px;
+  background: rgba(255, 20, 147, 0.3); /* ялгаатай фон */
+
+
 }
 .video-section {
   padding: 80px 20px;
@@ -626,6 +642,7 @@ body {
   </div>
 </div>
 </section>
+
   <!-- Skills -->
   <section id="skills">
     <h2>ХУВИЙН ЧАДВАР</h2>
@@ -733,17 +750,19 @@ body {
       • Хэвлэлийн эх бэлтгэл<br>
     </div>
   </li>
-
-
 </div>
 
 <script>
-  document.querySelectorAll(".price-title").forEach(btn => {
-    btn.addEventListener("click", () => {
-      const item = btn.parentElement;
-      item.classList.toggle("active");
-    });
+document.querySelectorAll(".price-title").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const item = btn.parentElement;
+    item.classList.toggle("active");
+    const arrow = btn.querySelector(".arrow");
+    if (arrow) {
+      arrow.textContent = item.classList.contains("active") ? "▲" : "▼";
+    }
   });
+});
 </script>
 
 
@@ -850,13 +869,13 @@ body {
   </p>
 
   <p>
-    <a href="Peja4919@gmail.com" class="contact-link">
+    <a href="https://mail.google.com/mail/" class="contact-link">
       <i class="fas fa-envelope" style="color:#FFD700; margin-right:10px;"></i>
       Peja4919@gmail.com
     </a>
   </p>
     <p>
-    <a href="tel:+976902244743" class="contact-link">
+    <a href="tel:+97690224474" class="contact-link">
       <i class="fas fa-phone" style="color:#4CAF50; margin-right:10px;"></i>
       +976 90 22 44 74
     </a>
@@ -1121,21 +1140,28 @@ videos.forEach(video => {
 });
 </script>
 <script>
-  // Menu → нүүр хуудас руу буцах
-  document.getElementById("sideMenuBtn").addEventListener("click", () => {
-    document.getElementById("hero").scrollIntoView({
-      behavior: "smooth"
-    });
+// Menu → нүүр хуудас руу буцах
+document.getElementById("sideMenuBtn").addEventListener("click", () => {
+  document.getElementById("hero").scrollIntoView({
+    behavior: "smooth"
   });
+});
 
 const sidePriceBtn = document.getElementById("sidePriceBtn");
 const pricePanel = document.getElementById("pricePanel");
 
+// Товч дарахад нээх/хаах
 sidePriceBtn.addEventListener("click", (e) => {
-  e.stopPropagation();
+  e.stopPropagation(); // гадна click event рүү дамжуулахгүй
   pricePanel.classList.toggle("active");
 });
 
+// Panel гадна талбай дээр дархад хаах
+document.addEventListener("click", (e) => {
+  if (!pricePanel.contains(e.target) && !sidePriceBtn.contains(e.target)) {
+    pricePanel.classList.remove("active");
+  }
+});
 </script>
 
 
