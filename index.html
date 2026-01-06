@@ -149,10 +149,11 @@ body {
     }
 
      .skill-fill {
-    width: 0%;
+    width: var(--level);
     height: 100%;
     background: linear-gradient(90deg, #2c0522, #ff6ea1);
     border-radius: 10px;
+    animation: fillBar 1.5s ease forwards;
     transition: width 0.5s cubic-bezier(.2, .9, .3, 1);
 
     }
@@ -801,21 +802,21 @@ document.querySelectorAll(".price-title").forEach(btn => {
   </div>
 
   <div class="gallery active" id="logo">
-    <img src="logo1.png">
-    <img src="logo2.png">
-    <img src="logo3.png">
-    <img src="logo4.png">
-    <img src="logo5.png">
+    <img src="logo1.jpg">
+    <img src="logo2.jpg">
+    <img src="logo3.jpg">
+    <img src="logo4.jpg">
+    <img src="logo5.jpg">
     <img src="logo6.png">
   </div>
 
   <div class="gallery" id="poster">
-    <img src="poster1.png">
-    <img src="poster2.png">
-    <img src="poster3.png">
-    <img src="poster4.png">
-    <img src="poster5.png">
-    <img src="poster6.png">
+    <img src="poster1.jpg">
+    <img src="poster2.jpg">
+    <img src="poster3.jpg">
+    <img src="poster4.jpg">
+    <img src="poster5.jpg">
+    <img src="poster6.jpg">
   </div>
 
 <div class="gallery" id="video">
